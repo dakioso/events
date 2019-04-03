@@ -1,8 +1,10 @@
 <template>
-    <v-toolbar flat dark>
+    <v-toolbar app flat dark>
         <v-toolbar-title></v-toolbar-title>
-        <span>Digitalist</span>
+        <div class="logo">
+        <span class="name">Digitalist</span>
         <span class="font-weight-light">Events</span>
+        </div>
         <v-spacer></v-spacer>
         <v-toolbar-items class="hidden-sm-and-down">
       <v-btn flat to="/">
@@ -15,10 +17,6 @@
     </v-toolbar>
 </template>
 
-
-
-<script>
-export default {
-    
-}
-</script>
+<style lang="scss" scoped>
+@import "../styles/components/navbar.scss";
+</style>
