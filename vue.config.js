@@ -1,14 +1,3 @@
-// module.exports = {
-//   runtimeCompiler: true,
-//
-//   pluginOptions: {
-//     'style-resources-loader': {
-//       preProcessor: 'scss',
-//       patterns: []
-//     }
-//   }
-// }
-
 const path = require("path");
 
 module.exports = {
