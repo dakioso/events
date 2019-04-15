@@ -1,4 +1,9 @@
-# digitalist-events
+# School project
+
+An event handler for internal events (talks) 
+
+The site should list all the 'talks' so the user can see all the upcoming events. 
+
 
 ## Project setup
 ```
@@ -24,6 +29,3 @@ yarn run test
 ```
 yarn run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
