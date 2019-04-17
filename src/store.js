@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -14,7 +14,6 @@ export default new Vuex.Store({
   mutations: {
     SET_PEOPLE (state, people) {
       state.people = people
-      console.log(people)
     }
   },
   actions: {
@@ -28,14 +27,13 @@ export default new Vuex.Store({
 
       axios.get('https://sheetdb.io/api/v1/023ckgqex42uo')
       .then(data => {  
-        let people = data.data
+        let people = data.data;
         commit('SET_PEOPLE', people)
-         })
+         });
 
       axios.get('https://sheetdb.io/api/v1/023ckgqex42uo/count')
       .then(data => {
         let id = data.data.rows
-        console.log(id)
       })
     }
   }

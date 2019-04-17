@@ -1,5 +1,19 @@
-body {
+$breakpoint-small: 750px;
 
-}
+
+
+
 $primary-color: #333;
 $font-size: 20px;
+
+.container {
+  margin: 0 auto;
+  max-width: 1240px;
+  padding: 0 15px;
+}
+
+.container-fluid {
+  margin: 0 auto;
+  max-width: 1240px;
+  padding: 0;
+}
