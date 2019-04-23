@@ -39,8 +39,8 @@ export default new Router({
             component: () => import(/* webpackChunkName: "Loginpage" */ './views/Loginpage.vue')
         },
         {
-            path: '/newtalk',
-            name: 'newtalk',
+            path: '/create-new-talk',
+            name: 'createnewtalk',
 
             component: () => import(/* webpackChunkName: "NewTalk" */ './views/NewTalk.vue')
         }

@@ -51,21 +51,17 @@
     }
 </script>
 
-
 <style lang="scss" scoped>
     @import "../styles/global.scss";
 
     .logo {
         text-decoration: none;
-
         span {
             font-size: $font-size;
         }
-
         .name {
             color: orange;
         }
-
         .talks {
             color: white
         }
@@ -76,5 +72,4 @@
     .drawer-button {
         width: 100%;
     }
-
 </style>

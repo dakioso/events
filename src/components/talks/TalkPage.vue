@@ -13,6 +13,8 @@
                     <div>
                         <h3 class="headline mb-0">{{ talkPage.title }}</h3>
                         <br>
+                        <p>{{ talkPage.date | filter}}</p>
+                        <br>
                         <div> {{ talkPage.description }} </div>
                     </div>
                 </v-card-title>

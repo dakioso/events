@@ -15,6 +15,8 @@
                                 <div>
                                     <h3 class="headline mb-0">{{ talk.title }}</h3>
                                     <br>
+                                    <p>{{ talk.date | filter}} - {{talk.location}}</p>
+                                    <br>
                                     <div> {{ talk.description }}</div>
                                 </div>
                             </v-card-title>
@@ -31,9 +33,11 @@
                 </li>
             </ul>
         </div>
-        <router-link tag="span" to="/newtalk">
+        <router-link tag="span" to="/create-new-talk">
             <v-btn fab dark color="red" class="newtalk-button">
-                <v-icon dark>add</v-icon>
+                <i class="material-icons">
+                    create
+                </i>
             </v-btn>
         </router-link>
 

@@ -7,7 +7,7 @@
     </v-layout>
         <v-layout row>
             <v-flex xs12>
-                <form>
+                <form v-on:submit.prevent="onCreateNewTalk">
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
@@ -20,22 +20,43 @@
                     </v-layout>
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
-                            <v-text-field
+                            <v-textarea
                             name="description"
                             label="Beskrivning av espresso talk"
                             id="description"
                             v-model="description"
-                            multi-line
-                            required></v-text-field>
+                            auto-grow
+                            required></v-textarea>
                         </v-flex>
                     </v-layout>
-                    <v-layout row>
+                    <v-layout row class="mb-2">
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-date-picker
+
+                                    v-model="date"
+                                    full-width
+                                    landscape
+                                    locale="sv-se"
+                            ></v-date-picker>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row class="mt-2">
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
                             name="host"
                             label="Vem håller 'talket'"
                             id="host"
                             v-model="host"
+                            required></v-text-field>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row class="mt-2">
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-text-field
+                            name="location"
+                            label="Vart? (Rum, plats..)"
+                            id="location"
+                            v-model="location"
                             required></v-text-field>
                         </v-flex>
                     </v-layout>
@@ -56,7 +77,9 @@
                     </v-layout>
                     <v-layout>
                         <v-flex xs1 sm6 offset-sm3>
-                            <v-btn class="primary" :disabled="!formIsValid">
+                            <v-btn class="primary"
+                                   :disabled="!formIsValid"
+                                   type="submit">
                                 Skapa talk!
                             </v-btn>
                         </v-flex>
@@ -75,7 +98,9 @@
                 title: '',
                 description: '',
                 host: '',
-                imageUrl: ''
+                imageUrl: '',
+                location: '',
+                date: new Date().toISOString().substr(0, 10),
             }
         },
         computed: {
@@ -83,7 +108,30 @@
                 return this.title !== '' &&
                         this.description !== '' &&
                         this.host !== '' &&
+                        this.location !== '' &&
                         this.imageUrl !== ''
+            },
+            dateIsFormatted() {
+                const date = new Date(this.date)
+                return date
+
+            }
+        },
+        methods: {
+            onCreateNewTalk() {
+                if (!this.formIsValid) {
+                    return
+                }
+                const talkData = {
+                    title: this.title,
+                    description: this.description,
+                    host: this.host,
+                    imageUrl: this.imageUrl,
+                    location: this.location,
+                    date: this.dateIsFormatted
+                }
+                this.$store.dispatch('createNewTalk', talkData)
+                this.$router.push('/talks')
             }
         }
     }

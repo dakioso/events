@@ -15,7 +15,7 @@
                     <h2>Upcoming talks!</h2>
                 </div>
                 <ul>
-                    <li v-for="(talk, index) in featuredTalks" :key="index" v-if="index > 0" class="event-item">
+                    <li v-for="(talk, index) in featuredTalks" :key="index" class="event-item">
                         <v-flex>
                             <a :href="'/talkpage/' + talk.id">
                             <v-card hover>
@@ -27,6 +27,9 @@
                                 <v-card-title primary-title>
                                     <div>
                                         <h3 class="headline mb-0">{{ talk.title}}</h3>
+                                        <br class="mb2">
+                                        {{ talk.date | filter}} - {{talk.host}}
+                                        <br>
                                         <br>
                                         <div> {{ talk.description }}</div>
                                     </div>
