@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <v-parallax height="900" dark
+            <v-parallax height="1000" dark
                         src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80">
                 <v-layout align-center column justify-center>
                     <h1 class="display-2 font-weight-thin mb-3">Espresso talks</h1>
@@ -10,29 +10,31 @@
             </v-parallax>
         </div>
         <div class="container">
-            <div class="frontpage-list">
-                <div class="frontpage-list__title">
+            <div class="homepage-list">
+                <div class="homepage-list__title">
                     <h2>Upcoming talks!</h2>
                 </div>
                 <ul>
-                    <li v-for="(item, index) in people" :key="index" v-if="index > 0" class="event-item">
+                    <li v-for="(talk, index) in featuredTalks" :key="index" v-if="index > 0" class="event-item">
                         <v-flex>
-                            <v-card>
+                            <a :href="'/talkpage/' + talk.id">
+                            <v-card hover>
                                 <v-img
-                                        src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+                                        :src="talk.imageUrl"
                                         aspect-ratio="2.75"
                                 ></v-img>
 
                                 <v-card-title primary-title>
                                     <div>
-                                        <h3 class="headline mb-0">Kangaroo Valley Safari</h3>
-                                        <div> {{ item.first_name }} {{ item.last_name }}</div>
+                                        <h3 class="headline mb-0">{{ talk.title}}</h3>
+                                        <br>
+                                        <div> {{ talk.description }}</div>
                                     </div>
                                 </v-card-title>
 
                             </v-card>
+                            </a>
                         </v-flex>
-
                     </li>
                 </ul>
             </div>
@@ -45,22 +47,19 @@
 
     export default {
         name: 'frontpage-list',
-        mounted() {
-            this.$store.dispatch('loadPeople')
-        },
         computed: {
-            people() {
-                return this.$store.state.people;
+            featuredTalks() {
+                return this.$store.getters.featuredTalks;
             }
         }
     }
 </script>
 
 
-<style lang="scss" scoped>
+<style lang="scss" >
     @import "../styles/global.scss";
 
-    .frontpage-list {
+    .homepage-list {
         padding: 0 0 50px 0;
 
         ul {
@@ -77,11 +76,20 @@
             }
 
         }
+        a {
+            text-decoration: none;
+        }
     }
-    .frontpage-list__title {
+
+    .homepage-list__title {
         display: flex;
         justify-content: center;
         padding: 30px;
+
+        h2 {
+            font-size: 30px;
+            margin: 0;
+        }
     }
 
 

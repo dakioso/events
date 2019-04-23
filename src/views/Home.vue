@@ -4,7 +4,7 @@
 
 
 <script>
-  import Frontpage from '../components/Frontpage'
+  import Frontpage from '../components/Home'
 
   export default {
     components: {

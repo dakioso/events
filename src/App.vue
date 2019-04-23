@@ -1,7 +1,7 @@
 <template>
 <v-app class="light-gray">
   <Navbar />
-  <v-content>
+  <v-content class="pa-0">
     <router-view></router-view>
   </v-content>
   <Footer />
@@ -26,3 +26,8 @@ export default {
   }
 }
 </script>
+
+
+<style lang="scss" scoped>
+
+</style>
