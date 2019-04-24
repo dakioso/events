@@ -6,7 +6,41 @@
                 <span class="font-weight-light talks">Talks</span>
             </a>
             <v-spacer></v-spacer>
-            <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
+
+
+            <v-toolbar-items class="hidden-sm-and-down">
+
+                <v-btn flat>
+                    <router-link tag="span" to="/">
+                        Hem
+                    </router-link>
+                </v-btn>
+
+
+                <v-btn flat>
+                    <router-link tag="span" to="talks">
+                        Talks
+                    </router-link>
+                </v-btn>
+
+
+                <v-btn flat>
+                    <router-link tag="span" to="about">
+                        About
+                    </router-link>
+                </v-btn>
+
+
+                <v-btn flat>
+                    <router-link tag="span" to="/login">
+                        <i class="material-icons">
+                            lock
+                        </i>
+                    </router-link>
+                </v-btn>
+
+            </v-toolbar-items>
+            <v-toolbar-side-icon @click="drawer = !drawer" class="hidden-md-and-up"></v-toolbar-side-icon>
         </v-toolbar>
 
         <v-navigation-drawer app temporary v-model="drawer" right class="blue app-drawer">
@@ -56,19 +90,24 @@
 
     .logo {
         text-decoration: none;
+
         span {
             font-size: $font-size;
         }
+
         .name {
             color: orange;
         }
+
         .talks {
             color: white
         }
     }
+
     .drawer-wrapper {
         flex-direction: column;
     }
+
     .drawer-button {
         width: 100%;
     }
