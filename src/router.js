@@ -36,13 +36,19 @@ export default new Router({
             path: '/login',
             name: 'login',
 
-            component: () => import(/* webpackChunkName: "Loginpage" */ './views/Loginpage.vue')
+            component: () => import(/* webpackChunkName: "Login" */ './views/Login.vue')
         },
         {
             path: '/create-new-talk',
             name: 'createnewtalk',
 
             component: () => import(/* webpackChunkName: "NewTalk" */ './views/NewTalk.vue')
+        },
+        {
+            path: '/create-new-user',
+            name: 'createnewuser',
+
+            component: () => import(/* webpackChunkName: "NewUser" */ './views/NewUser.vue')
         }
 
     ]

@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate';
-//import axios from 'axios'
+import * as firebase from 'firebase'
+
 
 Vue.use(Vuex);
 
@@ -10,11 +11,15 @@ export default new Vuex.Store({
         loadedTalks: [
             
         ],
+        user: null
     },
     plugins: [createPersistedState()],
     mutations: {
         createNewTalk(state, payload) {
             state.loadedTalks.push(payload)
+        },
+        setUser(state, payload) {
+            state.user = payload
         }
     },
     actions: {
@@ -29,6 +34,38 @@ export default new Vuex.Store({
                 id: 'hejhejhej'
             }
             commit('createNewTalk', talkPayload)
+        },
+        signupNewUser({commit}, payload) {
+            firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+                .then(
+                    user => {
+                        const newUser = {
+                            id: user.user.uid,
+                        }
+                        commit('setUser', newUser)
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error)
+                    }
+                )
+        },
+        signUserIn({commit}, payload) {
+            firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+                .then(
+                    user => {
+                        const newUser = {
+                            id: user.user.uid,
+                        }
+                        commit('setUser', newUser)
+                    }
+                )
+                .catch(
+                    error => {
+                        console.log(error)
+                    }
+                )
         }
     },
     getters: {

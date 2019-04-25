@@ -2,22 +2,26 @@ import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
-import axios from 'axios'
 import store from './store'
 import Filters from './filters/date'
-//import './firebase'
-//import VueFire from 'vuefire'
+import * as firebase from 'firebase'
 
 Vue.config.productionTip = false
-Vue.use(axios)
 
 Vue.filter('filter', Filters)
 
 new Vue({
   router,
   store,
+  render: h => h(App),
   created() {
-    console.log(this.$store.state.loadedTalks)
-  },
-  render: h => h(App)
+    firebase.initializeApp({
+      apiKey: 'AIzaSyBO8HEYe8547OBja0RfC8GmKQ5W_WVm0Bk',
+      authDomain: 'espresso-talk.firebaseapp.com',
+      databaseURL: 'https://espresso-talk.firebaseio.com',
+      projectId: 'espresso-talk',
+      storageBucket: 'espresso-talk.appspot.com',
+      messagingSenderId: '395082259880'
+    })
+  }
 }).$mount('#app')
