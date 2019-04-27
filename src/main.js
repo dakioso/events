@@ -5,10 +5,12 @@ import router from './router'
 import store from './store'
 import Filters from './filters/date'
 import * as firebase from 'firebase'
+import AlertCmp from './components/shared/Alert'
 
 Vue.config.productionTip = false
 
 Vue.filter('filter', Filters)
+Vue.component('app-alert', AlertCmp)
 
 new Vue({
   router,
@@ -23,5 +25,6 @@ new Vue({
       storageBucket: 'espresso-talk.appspot.com',
       messagingSenderId: '395082259880'
     })
+    this.$store.dispatch('loadTalks')
   }
 }).$mount('#app')

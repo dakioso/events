@@ -1,5 +1,10 @@
 <template>
     <v-container>
+        <v-layout row v-if="error">
+            <v-flex xs12 sm6 offset-sm3>
+                <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+            </v-flex>
+        </v-layout>
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
                 <v-card>
@@ -30,7 +35,12 @@
                                 </v-layout>
                                 <v-layout row>
                                     <v-flex xs12>
-                                        <v-btn large color="normal" type="submit">Logga in</v-btn>
+                                        <v-btn large color="normal"
+                                               type="submit"
+                                               :disable="loading"
+                                               :loading="loading">
+                                            Logga in
+                                        </v-btn>
                                     </v-flex>
                                 </v-layout>
                             </form>
@@ -55,18 +65,27 @@
         computed: {
             user() {
                 return this.$store.getters.user
+            },
+            loading(){
+                return this.$store.getters.loading
+            },
+            error() {
+                return this.$store.getters.error
             }
         },
         watch: {
             user(value) {
-                if(value !== null && value !== undefined) {
+                if (value !== null && value !== undefined) {
                     this.$router.push('/')
                 }
             }
         },
         methods: {
             onSignIn() {
-                this.$store.dispatch('signUserIn' , {email: this.email, password: this.password})
+                this.$store.dispatch('signUserIn', {email: this.email, password: this.password})
+            },
+            onDismissed() {
+                this.$store.dispatch('clearError')
             }
         }
     }

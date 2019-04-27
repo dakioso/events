@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import TalkPage from './components/talks/TalkPage'
 
+
 Vue.use(Router)
 
 export default new Router({
@@ -15,7 +16,7 @@ export default new Router({
             component: Home
         },
         {
-            path: '/talkpage/:id',
+            path: '/talks/:id',
             name: 'talkpage',
             props: true,
             component: TalkPage

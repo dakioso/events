@@ -1,77 +1,42 @@
 <template>
     <nav>
-        <v-toolbar flat dark>
-            <a href="/" class="logo">
-                <span class="name">Espresso</span>
-                <span class="font-weight-light talks">Talks</span>
-            </a>
-            <v-spacer></v-spacer>
-
-
-            <v-toolbar-items class="hidden-sm-and-down">
-
-                <v-btn flat>
-                    <router-link tag="span" to="/">
-                        Hem
-                    </router-link>
-                </v-btn>
-
-
-                <v-btn flat>
-                    <router-link tag="span" to="talks">
-                        Talks
-                    </router-link>
-                </v-btn>
-
-
-                <v-btn flat>
-                    <router-link tag="span" to="about">
-                        About
-                    </router-link>
-                </v-btn>
-
-
-                <v-btn flat>
-                    <router-link tag="span" to="/login">
-                        <i class="material-icons">
-                            lock
-                        </i>
-                    </router-link>
-                </v-btn>
-
-            </v-toolbar-items>
-            <v-toolbar-side-icon @click="drawer = !drawer" class="hidden-md-and-up"></v-toolbar-side-icon>
-        </v-toolbar>
-
-        <v-navigation-drawer app temporary v-model="drawer" right class="blue app-drawer">
-            <v-toolbar-items class="drawer-wrapper">
-
-                <router-link tag="span" to="/">
-                    <v-btn @click="drawer = !drawer" class="drawer-button">
-                        Hem
-                    </v-btn>
-                </router-link>
-
-                <router-link tag="span" to="talks">
-                    <v-btn @click="drawer = !drawer" class="drawer-button">
-                        Talks
-                    </v-btn>
-                </router-link>
-
-                <router-link tag="span" to="about">
-                    <v-btn @click="drawer = !drawer" class="drawer-button">
-                        About
-                    </v-btn>
-                </router-link>
-
-                <router-link tag="span" to="/login">
-                    <v-btn @click="drawer = !drawer" class="drawer-button">
-                        Login
-                    </v-btn>
-                </router-link>
-
-            </v-toolbar-items>
-        </v-navigation-drawer>
+    <v-navigation-drawer
+            temporary
+            fixed
+            right
+            v-model="drawer">
+        <v-list>
+            <v-list-tile
+                    v-for="item in menuItems"
+                    :key="item.title"
+                    router
+                    :to="item.link">
+                <v-list-tile-action>
+                    <v-icon>{{ item.icon }}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>{{ item.title}}</v-list-tile-content>
+            </v-list-tile>
+        </v-list>
+    </v-navigation-drawer>
+    <v-toolbar dark>
+        <v-toolbar-title class="logo">
+            <span>Espresso</span>
+            <span class="font-weight-light">Talks</span>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-xs-only">
+            <v-btn flat v-for="item in menuItems"
+                   :key="item.title"
+                    router
+                    :to="item.link">
+                <v-icon left>{{ item.icon}}</v-icon>
+                {{ item.title}}
+            </v-btn>
+        </v-toolbar-items>
+        <v-toolbar-side-icon
+                @click.stop="drawer = !drawer"
+                class="hidden-sm-and-up"></v-toolbar-side-icon>
+    </v-toolbar>
     </nav>
 </template>
 
@@ -79,10 +44,22 @@
     export default {
         data() {
             return {
-                drawer: false
+                drawer: false,
+                menuItems: [
+                    {icon: 'home', title: 'Home', link: '/'},
+                    {icon: 'group', title: 'Talks', link: '/talks'},
+                    {icon: 'public', title: 'About', link: '/about'},
+                    {icon: 'add_box', title: 'Create Talk', link: '/create-new-talk'},
+                    {icon: 'lock_open', title: 'Login', link: '/login'},
+                    {icon: 'lock', title: 'Logout'}
+                ]
             }
+        },
+        methods: {
+
+            }
+
         }
-    }
 </script>
 
 <style lang="scss" scoped>
@@ -110,5 +87,10 @@
 
     .drawer-button {
         width: 100%;
+    }
+    .router-link-exact- active {
+        button:before {
+            background: #000;
+        }
     }
 </style>

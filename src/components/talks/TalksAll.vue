@@ -4,7 +4,7 @@
             <ul>
                 <li v-for="(talk, index) in allTalks" :key="index" class="event-item">
                     <v-flex>
-                        <a :href="'/talkpage/' + talk.id">
+                        <router-link :to="{ name: 'talkpage', params: { id:talk.id }}">
                         <v-card hover>
                             <v-img
                                     :src="talk.imageUrl"
@@ -22,18 +22,18 @@
                             </v-card-title>
                             <v-spacer></v-spacer>
                             <v-card-actions>
-                                <v-btn flat color="orange" :to=" '/talkpage/' + talk.id">
+                                <v-btn flat color="orange">
                                     Check it out!
                                 </v-btn>
                             </v-card-actions>
                         </v-card>
-                        </a>
+                        </router-link>
                     </v-flex>
 
                 </li>
             </ul>
         </div>
-        <router-link tag="span" to="/create-new-talk">
+        <router-link tag="span" :to="{ name: 'createnewtalk' }">
             <v-btn fab dark color="red" class="newtalk-button">
                 <i class="material-icons">
                     create
