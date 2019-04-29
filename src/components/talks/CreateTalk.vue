@@ -62,12 +62,12 @@
                     </v-layout>
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
-                            <v-text-field
-                            name="imageUrl"
-                            label="Image URL"
-                            id="image-url"
-                            v-model="imageUrl"
-                            required></v-text-field>
+                             <v-btn raised @click="uploadImg">Upload Image</v-btn>
+                            <input type="file"
+                                   style="display: none"
+                                   ref="fileInput"
+                                   accept="image/*"
+                                   @change="onFilePicked">
                         </v-flex>
                     </v-layout>
                     <v-layout row>
@@ -101,6 +101,7 @@
                 imageUrl: '',
                 location: '',
                 date: new Date().toISOString().substr(0, 10),
+                image: null
             }
         },
         computed: {
@@ -114,7 +115,6 @@
             dateIsFormatted() {
                 const date = new Date(this.date)
                 return date
-
             }
         },
         methods: {
@@ -122,16 +122,35 @@
                 if (!this.formIsValid) {
                     return
                 }
+                if(!this.image) {
+                    return
+                }
                 const talkData = {
                     title: this.title,
                     description: this.description,
                     host: this.host,
-                    imageUrl: this.imageUrl,
+                    image: this.image,
                     location: this.location,
                     date: this.dateIsFormatted
                 }
                 this.$store.dispatch('createNewTalk', talkData)
                 this.$router.push('/talks')
+            },
+            uploadImg() {
+                this.$refs.fileInput.click()
+            },
+            onFilePicked(event) {
+                const files = event.target.files
+                let filename = files[0].name
+                if(filename.lastIndexOf('.') <= 0) {
+                    return alert('Add valid file!')
+                }
+                const fileReader = new FileReader()
+                fileReader.addEventListener('load', () => {
+                    this.imageUrl = fileReader.result
+                })
+                fileReader.readAsDataURL(files[0])
+                this.image = files[0]
             }
         }
     }

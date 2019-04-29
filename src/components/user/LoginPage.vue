@@ -66,7 +66,7 @@
             user() {
                 return this.$store.getters.user
             },
-            loading(){
+            loading() {
                 return this.$store.getters.loading
             },
             error() {

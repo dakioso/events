@@ -5,28 +5,28 @@
                 <li v-for="(talk, index) in allTalks" :key="index" class="event-item">
                     <v-flex>
                         <router-link :to="{ name: 'talkpage', params: { id:talk.id }}">
-                        <v-card hover>
-                            <v-img
-                                    :src="talk.imageUrl"
-                                    aspect-ratio="2.75"
-                            ></v-img>
+                            <v-card hover>
+                                <v-img
+                                        :src="talk.imageUrl"
+                                        aspect-ratio="2.75"
+                                ></v-img>
 
-                            <v-card-title secondary-title>
-                                <div>
-                                    <h3 class="headline mb-0">{{ talk.title }}</h3>
-                                    <br>
-                                    <p>{{ talk.date | filter}} - {{talk.location}}</p>
-                                    <br>
-                                    <div> {{ talk.description }}</div>
-                                </div>
-                            </v-card-title>
-                            <v-spacer></v-spacer>
-                            <v-card-actions>
-                                <v-btn flat color="orange">
-                                    Check it out!
-                                </v-btn>
-                            </v-card-actions>
-                        </v-card>
+                                <v-card-title secondary-title>
+                                    <div>
+                                        <h3 class="headline mb-0">{{ talk.title }}</h3>
+                                        <br>
+                                        <p>{{ talk.date | filter}} - {{talk.location}}</p>
+                                        <br>
+                                        <div> {{ talk.description }}</div>
+                                    </div>
+                                </v-card-title>
+                                <v-spacer></v-spacer>
+                                <v-card-actions>
+                                    <v-btn flat color="orange">
+                                        Check it out!
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
                         </router-link>
                     </v-flex>
 
@@ -59,7 +59,7 @@
 </script>
 
 <style lang="scss">
-    @import "../../styles/global";
+
 
     .event-list {
         padding: 100px 0 50px 0;
@@ -76,6 +76,7 @@
                 grid-template-columns: 2fr 2fr;
             }
         }
+
         a {
             text-decoration: none;
         }

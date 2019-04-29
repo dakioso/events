@@ -22,8 +22,13 @@ new Vue({
       authDomain: 'espresso-talk.firebaseapp.com',
       databaseURL: 'https://espresso-talk.firebaseio.com',
       projectId: 'espresso-talk',
-      storageBucket: 'espresso-talk.appspot.com',
+      storageBucket: 'gs://espresso-talk.appspot.com/',
       messagingSenderId: '395082259880'
+    })
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        this.$store.dispatch('autoSignIn', user)
+      }
     })
     this.$store.dispatch('loadTalks')
   }

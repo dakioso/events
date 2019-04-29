@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate';
+//import createPersistedState from 'vuex-persistedstate';
 import * as firebase from 'firebase'
 
 
@@ -8,14 +8,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        loadedTalks: [
-            
-        ],
+        loadedTalks: [],
         user: null,
         loading: null,
         error: null
     },
-    plugins: [createPersistedState()],
+
     mutations: {
         createNewTalk(state, payload) {
             state.loadedTalks.push(payload)
@@ -23,7 +21,7 @@ export default new Vuex.Store({
         setUser(state, payload) {
             state.user = payload
         },
-        setLoading(state,payload) {
+        setLoading(state, payload) {
             state.loading = payload
         },
         setError(state, payload) {
@@ -51,7 +49,9 @@ export default new Vuex.Store({
                             description: obj[key].description,
                             host: obj[key].host,
                             date: obj[key].date,
-                            imageUrl: obj[key].imageUrl
+                            imageUrl: obj[key].imageUrl,
+                            createdBy: obj[key].createdBy
+
                         })
                     }
                     commit('setLoadedTalks', talks)
@@ -62,28 +62,81 @@ export default new Vuex.Store({
                     commit('setLoading', true)
                 })
         },
-        createNewTalk({commit}, payload) {
+        createNewTalk({commit, getters}, payload) {
+            // image is passed as file, need to upload it and then store the imageUrl
+            const dbRef = firebase.database().ref("talks").push();
+            const key = dbRef.key;
+            const filename = payload.image.name;
+            const ext = filename.slice(filename.lastIndexOf("."));
+            const storageRef = firebase.storage().ref("talks").child(key + "." + ext);
+
+            storageRef.put(payload.image)
+                .then((uploadTask) => {
+                    // file uploaded
+                    return storageRef.getDownloadURL();
+                })
+                .then((downloadUrl) => {
+                    const talkPayload = {
+                        title: payload.title,
+                        location: payload.location,
+                        description: payload.description,
+                        date: payload.date.toISOString(),
+                        id: key,
+                        host: payload.host,
+                        createdBy: getters.user.id,
+                        imageUrl: downloadUrl
+                    };
+                    commit("createNewTalk", talkPayload);
+                    return dbRef.set(talkPayload);
+                })
+                .then((data) => {
+                    console.log("meeting created");
+                })
+                .catch((error) => {
+                    console.error("error: " + error);
+                });
+        },
+        /*createNewTalk({commit, getters}, payload) {
             const talkPayload = {
                 title: payload.title,
                 description: payload.description,
                 host: payload.host,
-                imageUrl: payload.imageUrl,
                 date: payload.date.toISOString(),
-                location: payload.location
+                location: payload.location,
+                createdBy: getters.user.id
             }
+            let imageUrl
+            let key
             firebase.database().ref('talks').push(talkPayload)
                 .then((data) => {
                     const key = data.key
+                    return key
+                })
+                .then(key => {
+                    const filename = payload.image.name
+                    const ext = filename.slice(filename.lastIndexOf('.'))
+                    return firebase.storage().ref('talks/' + key + '.' + ext).put(payload.image)
+                })
+                .then(fileData => {
+                    return fileData.ref.getDownloadURL()
+                        .then(imageUrl => {
+                            return firebase.database().ref('talks').child(key).update({ imageUrl: imageUrl })
+                        })
+                    /!*imageUrl = fileData.metadata.downloadURLs
+                    return firebase.database().ref('talks').child(key).update({imageUrl: imageUrl})*!/
+                })
+                .then(() => {
                     commit('createNewTalk', {
                         ...talkPayload,
+                        imageUrl: imageUrl,
                         id: key
                     })
                 })
-                .catch((error) =>{
+                .catch((error) => {
                     console.error(error)
                 })
 
-        },
+        },*/
         signupNewUser({commit}, payload) {
             commit('setLoading', true)
             commit('clearError')
@@ -123,6 +176,13 @@ export default new Vuex.Store({
                         commit('setError', error)
                     }
                 )
+        },
+        autoSignIn({commit}, payload) {
+          commit('setUser', {id:payload.uid})
+        },
+        logout({commit}) {
+            firebase.auth().signOut()
+            commit('setUser', null)
         },
         clearError({commit}) {
             commit('clearError')

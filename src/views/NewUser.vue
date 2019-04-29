@@ -1,14 +1,14 @@
 <template>
-    <SignupPage></SignupPage>
+    <NewUser></NewUser>
 </template>
 
 
 <script>
-    import SignupPage from '../components/user/SignupPage'
+    import NewUser from '../components/user/NewUser'
 
     export default {
         components: {
-            SignupPage
+            NewUser
         }
     }
 </script>
