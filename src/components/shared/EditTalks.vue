@@ -1,7 +1,7 @@
 <template>
     <v-dialog width="400px" persistent v-model="modal">
         <v-btn fab accent small slot="activator">
-        <v-icon>edit</v-icon>
+            <v-icon>edit</v-icon>
         </v-btn>
         <v-card>
             <v-container>
@@ -80,7 +80,7 @@
         },
         methods: {
             onSaveChange() {
-                if(this.editedTitle.trim() === '' || this.editedDescription.trim() === '' && this.editedHost.trim() === '' && this.editedLocation.trim() === '') {
+                if (this.editedTitle.trim() === '' || this.editedDescription.trim() === '' && this.editedHost.trim() === '' && this.editedLocation.trim() === '') {
                     return
                 }
                 this.modal = false

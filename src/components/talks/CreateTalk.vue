@@ -1,32 +1,32 @@
 <template>
     <v-container>
-    <v-layout row text-xs-center>
-        <v-flex xs12>
-            <h1 class="secondary--text">Skapa ny talk!</h1>
-        </v-flex>
-    </v-layout>
+        <v-layout row text-xs-center>
+            <v-flex xs12>
+                <h1 class="secondary--text">Skapa ny talk!</h1>
+            </v-flex>
+        </v-layout>
         <v-layout row>
             <v-flex xs12>
                 <form v-on:submit.prevent="onCreateNewTalk">
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
-                            name="title"
-                            label="Namn på espresso talk"
-                            id="title"
-                            v-model="title"
-                            required></v-text-field>
+                                    name="title"
+                                    label="Namn på espresso talk"
+                                    id="title"
+                                    v-model="title"
+                                    required></v-text-field>
                         </v-flex>
                     </v-layout>
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-textarea
-                            name="description"
-                            label="Beskrivning av espresso talk"
-                            id="description"
-                            v-model="description"
-                            auto-grow
-                            required></v-textarea>
+                                    name="description"
+                                    label="Beskrivning av espresso talk"
+                                    id="description"
+                                    v-model="description"
+                                    auto-grow
+                                    required></v-textarea>
                         </v-flex>
                     </v-layout>
                     <v-layout row class="mb-2">
@@ -42,26 +42,26 @@
                     <v-layout row class="mt-2">
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
-                            name="host"
-                            label="Vem håller 'talket'"
-                            id="host"
-                            v-model="host"
-                            required></v-text-field>
+                                    name="host"
+                                    label="Vem håller 'talket'"
+                                    id="host"
+                                    v-model="host"
+                                    required></v-text-field>
                         </v-flex>
                     </v-layout>
                     <v-layout row class="mt-2">
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
-                            name="location"
-                            label="Vart? (Rum, plats)"
-                            id="location"
-                            v-model="location"
-                            required></v-text-field>
+                                    name="location"
+                                    label="Vart? (Rum, plats)"
+                                    id="location"
+                                    v-model="location"
+                                    required></v-text-field>
                         </v-flex>
                     </v-layout>
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
-                             <v-btn raised @click="uploadImg">Upload Image</v-btn>
+                            <v-btn raised @click="uploadImg">Upload Image</v-btn>
                             <input type="file"
                                    style="display: none"
                                    ref="fileInput"
@@ -106,10 +106,10 @@
         computed: {
             formIsValid() {
                 return this.title !== '' &&
-                        this.description !== '' &&
-                        this.host !== '' &&
-                        this.location !== '' &&
-                        this.imageUrl !== ''
+                    this.description !== '' &&
+                    this.host !== '' &&
+                    this.location !== '' &&
+                    this.imageUrl !== ''
             },
             dateIsFormatted() {
                 const date = new Date(this.date)
@@ -121,7 +121,7 @@
                 if (!this.formIsValid) {
                     return
                 }
-                if(!this.image) {
+                if (!this.image) {
                     return
                 }
                 const talkData = {
@@ -141,7 +141,7 @@
             onFilePicked(event) {
                 const files = event.target.files
                 let filename = files[0].name
-                if(filename.lastIndexOf('.') <= 0) {
+                if (filename.lastIndexOf('.') <= 0) {
                     return alert('Add valid file!')
                 }
                 const fileReader = new FileReader()

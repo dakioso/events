@@ -9,7 +9,7 @@
                 wrap
         >
             <v-btn
-                    v-for="item in menuItems"
+                    v-for="item in footerItems"
                     :key="item.title"
                     color="white"
                     flat
@@ -33,19 +33,18 @@
 
 <script>
     export default {
-            computed: {
-                menuItems() {
-                    let menuItems = [
-                        {icon: 'home', title: 'Home', link: '/'},
-                        {icon: 'group', title: 'Talks', link: '/talks'},
-                        {icon: 'public', title: 'About', link: '/about'},
-                        {icon: 'lock_open', title: 'Login', link: '/login'}
-                    ]
-                    return menuItems
-                }
+        computed: {
+            footerItems() {
+                let footerItems = [
+                    {icon: 'home', title: 'Home', link: '/'},
+                    {icon: 'group', title: 'Talks', link: '/talks'},
+                    {icon: 'public', title: 'About', link: '/about'},
+                    {icon: 'lock_open', title: 'Login', link: '/login'}
+                ]
+                return footerItems
             }
+        }
     }
-
 
 
 </script>

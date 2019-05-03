@@ -73,7 +73,7 @@
                     {icon: 'public', title: 'About', link: '/about'},
                     {icon: 'lock_open', title: 'Login', link: '/login'}
                 ]
-                if(this.isUserAuth) {
+                if (this.isUserAuth) {
                     menuItems = [
                         {icon: 'home', title: 'Home', link: '/'},
                         {icon: 'group', title: 'Talks', link: '/talks'},
@@ -84,7 +84,7 @@
                 return menuItems
             },
             isUserAuth() {
-               return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+                return this.$store.getters.user !== null && this.$store.getters.user !== undefined
             }
         },
         methods: {
@@ -93,7 +93,6 @@
                 this.$router.push('/')
             }
         }
-
     }
 </script>
 z
@@ -115,5 +114,4 @@ z
             color: white
         }
     }
-
 </style>

@@ -7,20 +7,21 @@
                         <router-link :to="{ name: 'talkpage', params: { id:talk.id }}">
                             <v-card hover>
                                 <v-img :src="talk.imageUrl"
-                                        aspect-ratio="2.75"
+                                       aspect-ratio="2.75"
                                 ></v-img>
 
                                 <v-card-title primary-title pb-0>
-                                        <h3 class="headline mb-1">{{ talk.title}}</h3>
+                                    <h3 class="headline mb-1">{{ talk.title}}</h3>
                                 </v-card-title>
                                 <v-card-text>
-                                        <p class="subheading mb-0">Date: {{ talk.date | filter}} - Location: {{talk.location}}</p>
-                                        <p class="subheading mb-0">Host: {{ talk.host}}</p>
-                                        <br>
-                                        <div class="card__description--wrapper">
+                                    <p class="subheading mb-0">Date: {{ talk.date | filter}} - Location:
+                                        {{talk.location}}</p>
+                                    <p class="subheading mb-0">Host: {{ talk.host}}</p>
+                                    <br>
+                                    <div class="card__description--wrapper">
                                         <p class="card__description"> {{ talk.description }}</p>
-                                        </div>
-                                    </v-card-text>
+                                    </div>
+                                </v-card-text>
                                 <v-spacer></v-spacer>
                                 <v-card-actions>
                                     <v-btn flat color="orange">
@@ -30,10 +31,8 @@
                             </v-card>
                         </router-link>
                     </v-flex>
-
                 </li>
             </ul>
-
             <router-link tag="span" :to="{ name: 'createnewtalk' }">
                 <v-btn fab
                        dark
@@ -52,12 +51,10 @@
     </div>
 </template>
 
-
 <script>
 
     export default {
         name: 'event-list',
-
         computed: {
             allTalks() {
                 return this.$store.getters.loadedTalks;
@@ -66,9 +63,7 @@
                 return this.$store.getters.user !== null && this.$store.getters.user !== undefined
             },
         },
-        methods: {
-
-        }
+        methods: {}
     }
 </script>
 
@@ -78,11 +73,13 @@
     @media (min-width: $breakpoint-small) {
         grid-template-columns: 2fr 2fr;
     }
+
     .talksall__wrapper {
         padding: 30px 0 30px 0;
         @media (min-width: $breakpoint-small) {
             padding: 30px 0;
         }
+
         a {
             text-decoration: none;
         }
@@ -102,7 +99,6 @@
     .newtalk__button {
         float: right;
     }
-
     #lateral .v-speed-dial,
     #lateral .v-btn--floating {
         position: absolute;
@@ -116,5 +112,4 @@
             bottom: 120px;
         }
     }
-
 </style>
