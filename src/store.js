@@ -18,6 +18,29 @@ export default new Vuex.Store({
         createNewTalk(state, payload) {
             state.loadedTalks.push(payload)
         },
+        updateTalk(state, payload) {
+            let updateTalk = state.loadedTalks.find(updateTalk => {
+                return updateTalk.id === payload.id
+            })
+            if(payload.title ) {
+                updateTalk.title = payload.title
+            }
+            if(payload.description) {
+                updateTalk.description = payload.description
+            }
+            if(payload.date) {
+                updateTalk.date = payload.date
+            }
+            if(payload.host) {
+                updateTalk.host = payload.host
+            }
+            if(payload.location) {
+                updateTalk.location = payload.location
+            }
+        },
+        deleteTalkData(state, payload) {
+          state.loadedTalks.push(payload)
+        },
         setUser(state, payload) {
             state.user = payload
         },
@@ -71,7 +94,7 @@ export default new Vuex.Store({
             const storageRef = firebase.storage().ref("talks").child(key + "." + ext);
 
             storageRef.put(payload.image)
-                .then((uploadTask) => {
+                .then(() => {
                     // file uploaded
                     return storageRef.getDownloadURL();
                 })
@@ -89,12 +112,49 @@ export default new Vuex.Store({
                     commit("createNewTalk", talkPayload);
                     return dbRef.set(talkPayload);
                 })
-                .then((data) => {
+                .then(() => {
                     console.log("meeting created");
                 })
                 .catch((error) => {
                     console.error("error: " + error);
                 });
+        },
+        updateTalkData({commit}, payload) {
+            commit('setLoading', true)
+            const updateObj = {}
+            if(payload.title) {
+                updateObj.title = payload.title
+            }
+            if(payload.description) {
+                updateObj.description = payload.description
+            }
+            if(payload.date) {
+                updateObj.date = payload.date
+            }
+            if(payload.host) {
+                updateObj.host = payload.host
+            }
+            if(payload.location) {
+                updateObj.location = payload.location
+            }
+            firebase.database().ref('talks').child(payload.id).update(updateObj)
+                .then(() => {
+                    commit('setLoading', false)
+                    commit('updateTalk', payload)
+                })
+                .catch(error => {
+                    console.log(error)
+                    commit('setLoading', false)
+                })
+        },
+        deleteTalkData({commit}, payload) {
+            firebase.database().ref('talks').child(payload.id).remove()
+                .then(() => {
+                    commit('deleteTalkData', payload)
+                })
+                .catch(error => {
+                    console.log('error:' + error)
+                })
         },
         /*createNewTalk({commit, getters}, payload) {
             const talkPayload = {
@@ -178,7 +238,7 @@ export default new Vuex.Store({
                 )
         },
         autoSignIn({commit}, payload) {
-          commit('setUser', {id:payload.uid})
+            commit('setUser', {id: payload.uid})
         },
         logout({commit}) {
             firebase.auth().signOut()

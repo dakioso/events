@@ -78,8 +78,7 @@
                         {icon: 'home', title: 'Home', link: '/'},
                         {icon: 'group', title: 'Talks', link: '/talks'},
                         {icon: 'public', title: 'About', link: '/about'},
-                        {icon: 'add_box', title: 'Create Talk', link: '/create-new-talk'},
-                        {icon: 'add_box', title: 'Create', link: '/create'}
+                        {icon: 'add_box', title: 'Create Talk', link: '/create-new-talk'}
                     ]
                 }
                 return menuItems

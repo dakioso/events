@@ -1,35 +1,56 @@
 <template>
-    <v-footer dark flat height="auto">
-        <v-card flat tile class="dark lighten-1 white--text text-xs-center footer-area" height="150">
-
-            <v-divider></v-divider>
-
-            <v-card-text class="white--text pt-0">
-                Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum.
-                Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur
-                dignissim a sit amet dui. Duis commodo vitae
-                velit et faucibus.
-            </v-card-text>
-
-            <v-divider></v-divider>
-
-            <v-card-text class="white--text">
-                &copy;2018 — <strong>Vuetify</strong>
-            </v-card-text>
-        </v-card>
+    <v-footer
+            height="auto"
+            dark
+    >
+        <v-layout
+                justify-center
+                row
+                wrap
+        >
+            <v-btn
+                    v-for="item in menuItems"
+                    :key="item.title"
+                    color="white"
+                    flat
+                    round
+                    :to="item.link"
+            >
+                {{ item.title }}
+            </v-btn>
+            <v-flex
+                    grey darken-3
+                    py-3
+                    text-xs-center
+                    white--text
+                    xs12
+            >
+                &copy;2019 — <strong>Digitalist</strong>
+            </v-flex>
+        </v-layout>
     </v-footer>
 </template>
 
-
 <script>
     export default {
-        data: () => ({})
+            computed: {
+                menuItems() {
+                    let menuItems = [
+                        {icon: 'home', title: 'Home', link: '/'},
+                        {icon: 'group', title: 'Talks', link: '/talks'},
+                        {icon: 'public', title: 'About', link: '/about'},
+                        {icon: 'lock_open', title: 'Login', link: '/login'}
+                    ]
+                    return menuItems
+                }
+            }
     }
+
+
+
 </script>
 
-
 <style lang="scss" scoped>
-    @import "../styles/global.scss";
 
 
 </style>

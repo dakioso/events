@@ -54,14 +54,6 @@ export default new Router({
 
 
             component: () => import(/* webpackChunkName: "NewUser" */ './views/NewUser.vue')
-        },
-        {
-            path: '/create',
-            name: 'createpage',
-            beforeEnter: AuthGuard,
-
-
-            component: () => import(/* webpackChunkName: "CreatePage" */ './views/CreatePage.vue')
         }
 
     ]

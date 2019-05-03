@@ -6,11 +6,15 @@ import store from './store'
 import Filters from './filters/date'
 import * as firebase from 'firebase'
 import AlertCmp from './components/shared/Alert'
+import EditTalks from './components/shared/EditTalks'
 
 Vue.config.productionTip = false
 
 Vue.filter('filter', Filters)
 Vue.component('app-alert', AlertCmp)
+Vue.component('app-edit-talks', EditTalks)
+
+
 
 new Vue({
   router,

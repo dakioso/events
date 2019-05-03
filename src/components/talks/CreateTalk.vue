@@ -1,7 +1,7 @@
 <template>
     <v-container>
-    <v-layout row>
-        <v-flex xs12 sm7>
+    <v-layout row text-xs-center>
+        <v-flex xs12>
             <h1 class="secondary--text">Skapa ny talk!</h1>
         </v-flex>
     </v-layout>
@@ -35,7 +35,6 @@
 
                                     v-model="date"
                                     full-width
-                                    landscape
                                     locale="sv-se"
                             ></v-date-picker>
                         </v-flex>
@@ -54,7 +53,7 @@
                         <v-flex xs12 sm6 offset-sm3>
                             <v-text-field
                             name="location"
-                            label="Vart? (Rum, plats..)"
+                            label="Vart? (Rum, plats)"
                             id="location"
                             v-model="location"
                             required></v-text-field>
@@ -72,7 +71,7 @@
                     </v-layout>
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
-                            <img :src="imageUrl" class="create-talk__img">
+                            <img :src="imageUrl" class="preview__img">
                         </v-flex>
                     </v-layout>
                     <v-layout>
@@ -158,8 +157,8 @@
 
 
 <style lang="scss">
-    .create-talk__img {
+    .preview__img {
         height: 150px;
-
     }
+
 </style>
