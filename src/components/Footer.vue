@@ -18,6 +18,15 @@
             >
                 {{ item.title }}
             </v-btn>
+            <v-btn
+                    color="white"
+                    flat
+                    round
+                    href="http://digitalist.se"
+            >
+
+                Digitalist.se
+            </v-btn>
             <v-flex
                     grey darken-3
                     py-3
@@ -38,8 +47,7 @@
                 let footerItems = [
                     {icon: 'home', title: 'Home', link: '/'},
                     {icon: 'group', title: 'Talks', link: '/talks'},
-                    {icon: 'public', title: 'About', link: '/about'},
-                    {icon: 'lock_open', title: 'Login', link: '/login'}
+                    {icon: 'public', title: 'About', link: '/about'}
                 ]
                 return footerItems
             }

@@ -1,16 +1,15 @@
 <template>
-    <v-dialog width="400px" persistent v-model="modal">
+    <v-dialog width="400px" persistent v-model="modal" :fullscreen="$vuetify.breakpoint.smAndDown">
         <v-btn fab accent small slot="activator">
             <v-icon>edit</v-icon>
         </v-btn>
         <v-card>
-            <v-container>
+            <v-container class="container-main">
                 <v-layout row wrap>
                     <v-flex xs12>
-                        <v-card-title>Edit Talk</v-card-title>
+                        <v-card-title primary-title class="edittalks__title">Edit Talk</v-card-title>
                     </v-flex>
                 </v-layout>
-                <v-divider></v-divider>
                 <v-layout row wrap>
                     <v-flex xs12>
                         <v-card-text>
@@ -44,16 +43,15 @@
                     </v-flex>
                 </v-layout>
                 <v-divider></v-divider>
-                <v-layout row wrap>
+                <v-layout row wrap mt-3>
                     <v-flex xs12>
-                        <v-card-actions>
+                        <v-card-actions class="edittalks__btns">
                             <v-btn color="info" @click="modal = false">
                                 Close
                             </v-btn>
                             <v-btn color="info" @click="onSaveChange">
                                 Save
                             </v-btn>
-                            <v-spacer></v-spacer>
                             <v-btn color="error" outline @click="onDelete">
                                 Delete
                             </v-btn>
@@ -103,3 +101,16 @@
         }
     }
 </script>
+
+<style lang="scss">
+    .container-main {
+        padding: 20px 0;
+    }
+    .edittalks__title {
+        padding: 0 0 0 15px;
+        font-size: 22px;
+    }
+    .edittalks__btns {
+        justify-content: center;
+    }
+</style>

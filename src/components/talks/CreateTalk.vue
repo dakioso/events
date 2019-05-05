@@ -1,10 +1,5 @@
 <template>
-    <v-container>
-        <v-layout row text-xs-center>
-            <v-flex xs12>
-                <h1 class="secondary--text">Skapa ny talk!</h1>
-            </v-flex>
-        </v-layout>
+    <v-container class="container-main">
         <v-layout row>
             <v-flex xs12>
                 <form v-on:submit.prevent="onCreateNewTalk">
@@ -30,9 +25,8 @@
                         </v-flex>
                     </v-layout>
                     <v-layout row class="mb-2">
-                        <v-flex xs12 sm6 offset-sm3>
+                        <v-flex xs12 sm6 offset-sm3 mb-4 mt-4>
                             <v-date-picker
-
                                     v-model="date"
                                     full-width
                                     locale="sv-se"
@@ -60,7 +54,7 @@
                         </v-flex>
                     </v-layout>
                     <v-layout row>
-                        <v-flex xs12 sm6 offset-sm3>
+                        <v-flex xs12 sm6 offset-sm3 mt-3 mb-3>
                             <v-btn raised @click="uploadImg">Upload Image</v-btn>
                             <input type="file"
                                    style="display: none"
@@ -70,12 +64,12 @@
                         </v-flex>
                     </v-layout>
                     <v-layout row>
-                        <v-flex xs12 sm6 offset-sm3>
+                        <v-flex xs12 sm6 offset-sm3 mt-1 mb-1>
                             <img :src="imageUrl" class="preview__img">
                         </v-flex>
                     </v-layout>
                     <v-layout>
-                        <v-flex xs1 sm6 offset-sm3>
+                        <v-flex xs1 sm6 offset-sm3 mt-3 mb-3>
                             <v-btn class="primary"
                                    :disabled="!formIsValid"
                                    type="submit">
@@ -84,6 +78,21 @@
                         </v-flex>
                     </v-layout>
                 </form>
+                <router-link tag="span" :to="{ name: 'createnewuser' }">
+                    <v-btn fab
+                           dark
+                           color="blue"
+                           bottom
+                           outline
+                           right
+                           fixed
+                           class="newtalk__button"
+                           v-if="isUserAuth">
+                        <i class="material-icons">
+                            person_add
+                        </i>
+                    </v-btn>
+                </router-link>
             </v-flex>
         </v-layout>
     </v-container>
@@ -114,6 +123,9 @@
             dateIsFormatted() {
                 const date = new Date(this.date)
                 return date
+            },
+            isUserAuth() {
+                return this.$store.getters.user !== null && this.$store.getters.user !== undefined
             }
         },
         methods: {

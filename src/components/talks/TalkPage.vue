@@ -62,6 +62,6 @@
 
 <style lang="scss">
     .talkpage-card {
-        margin-top: 50px;
+        margin-top: 30px;
     }
 </style>
