@@ -7,6 +7,7 @@
                         <v-card hover>
                             <v-img :src="talk.imageUrl"
                                    aspect-ratio="2.75"
+                                   alt="talk image"
                             ></v-img>
 
                             <v-card-title primary-title pb-0>
@@ -70,17 +71,15 @@
     @import "../../styles/global.scss";
 
     .container-main {
-        padding-top: 25px;
+        padding: 25px 10px 0 10px;
         @media (min-width: $breakpoint-small) {
-            padding: 30px 40px 35px;
+            padding: 40px 75px 10px;
         }
         @media (min-width: $breakpoint-medium) {
-            padding: 30px 75px 35px;
+            padding: 40px 75px 10px;
         }
 
-        a {
-            text-decoration: none;
-        }
+
     }
 
     .event__list {
@@ -91,13 +90,22 @@
         grid-gap: 20px;
         justify-items: stretch;
         align-items: stretch;
+        a {
+            text-decoration: none;
+        }
         @media (min-width: $breakpoint-small) {
             grid-template-columns: 2fr 2fr;
         }
         @media (min-width: $breakpoint-medium) {
             grid-template-columns: 2fr 2fr;
             grid-gap: 30px;
+
         }
+    }
+    .card__description--wrapper {
+        height: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .newtalk__button {

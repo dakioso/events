@@ -11,7 +11,7 @@
                 </v-layout>
             </v-parallax>
         </v-layout>
-        <v-container fluid>
+        <v-container fluid mr-5>
             <v-layout>
                 <v-flex xs12 class="text-xs-center">
                     <v-progress-circular
@@ -33,22 +33,23 @@
                             <v-flex>
                                 <router-link :to="{ name: 'talkpage', params: { id:talk.id }}">
                                     <v-card hover>
-                                        <v-img
-                                                :src="talk.imageUrl"
-                                                aspect-ratio="2.30"
+                                        <v-img :src="talk.imageUrl"
+                                               aspect-ratio="2.75"
+                                               alt="talk image"
                                         ></v-img>
 
-                                        <v-card-title primary-title>
-                                            <div>
-                                                <h3 class="headline mb-0">{{ talk.title}}</h3>
-                                                <br class="mb2">
-                                                {{ talk.date | filter}} - {{talk.host}}
-                                                <br>
-                                                <br>
-                                                <div> {{ talk.description }}</div>
-                                            </div>
+                                        <v-card-title primary-title pb-0>
+                                            <h3 class="headline mb-1">{{ talk.title}}</h3>
                                         </v-card-title>
-
+                                        <v-card-text>
+                                            <p class="subheading mb-0">Date: {{ talk.date | filter}} - Location:
+                                                {{talk.location}}</p>
+                                            <p class="subheading mb-0">Host: {{ talk.host}}</p>
+                                            <br>
+                                            <div class="card__description--wrapper">
+                                                <p class="card__description"> {{ talk.description }}</p>
+                                            </div>
+                                        </v-card-text>
                                     </v-card>
                                 </router-link>
                             </v-flex>
@@ -88,8 +89,6 @@
     }
 
     .homepage-list {
-        padding: 0 0 50px 0;
-
         ul {
             list-style: none;
             display: grid;
@@ -112,11 +111,18 @@
     .homepage-list__title {
         display: flex;
         justify-content: center;
-        padding: 30px;
+        padding: 0 30px 30px 30px;
 
         h2 {
             font-size: 30px;
             margin: 0;
         }
     }
+
+    .card__description--wrapper {
+        height: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
 </style>

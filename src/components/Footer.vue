@@ -2,6 +2,7 @@
     <v-footer
             height="auto"
             dark
+            class="footer"
     >
         <v-layout
                 justify-center
@@ -57,7 +58,9 @@
 
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss">
+    .footer {
+        margin-top: 30px;
+    }
 
 </style>

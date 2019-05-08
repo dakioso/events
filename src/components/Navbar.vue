@@ -1,5 +1,32 @@
 <template>
     <nav>
+        <v-toolbar dark>
+            <v-toolbar-title>
+                <router-link :to="{ name: 'home'}" class="logo" area-label="hem">
+                    <span class="name">Espresso</span>
+                    <span class="font-weight-light talks">Talks</span>
+                </router-link>
+            </v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn flat v-for="item in menuItems"
+                       :key="item.title"
+                       router
+                       :to="item.link">
+                    <v-icon left>{{ item.icon}}</v-icon>
+                    {{ item.title}}
+                </v-btn>
+                <v-btn flat
+                       v-if="isUserAuth"
+                       @click="onLogout">
+                    <v-icon left>lock</v-icon>
+                    Logout
+                </v-btn>
+            </v-toolbar-items>
+            <v-toolbar-side-icon
+                    @click.stop="drawer = !drawer"
+                    class="hidden-md-and-up" right></v-toolbar-side-icon>
+        </v-toolbar>
         <v-navigation-drawer
                 temporary
                 fixed
@@ -28,33 +55,6 @@
                 </v-list-tile>
             </v-list>
         </v-navigation-drawer>
-        <v-toolbar dark>
-            <v-toolbar-title>
-                <router-link :to="{ name: 'home'}" class="logo">
-                    <span class="name">Espresso</span>
-                    <span class="font-weight-light talks">Talks</span>
-                </router-link>
-            </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-toolbar-items class="hidden-sm-and-down">
-                <v-btn flat v-for="item in menuItems"
-                       :key="item.title"
-                       router
-                       :to="item.link">
-                    <v-icon left>{{ item.icon}}</v-icon>
-                    {{ item.title}}
-                </v-btn>
-                <v-btn flat
-                       v-if="isUserAuth"
-                       @click="onLogout">
-                    <v-icon left>lock</v-icon>
-                    Logout
-                </v-btn>
-            </v-toolbar-items>
-            <v-toolbar-side-icon
-                    @click.stop="drawer = !drawer"
-                    class="hidden-md-and-up" right></v-toolbar-side-icon>
-        </v-toolbar>
     </nav>
 </template>
 
