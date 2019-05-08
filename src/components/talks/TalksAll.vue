@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid class="container-main">
+    <v-container class="container-main">
         <ul class="event__list">
             <li v-for="(talk, index) in allTalks" :key="index" class="event-item">
                 <v-flex>
