@@ -39,15 +39,15 @@
                                         ></v-img>
 
                                         <v-card-title primary-title pb-0>
-                                            <h3 class="headline mb-1">{{ talk.title}}</h3>
+                                            <h3 class="headline mb-1 card-title">{{ talk.title}}</h3>
                                         </v-card-title>
                                         <v-card-text>
-                                            <p class="subheading mb-0">Date: {{ talk.date | filter}} - Location:
+                                            <p class="subheading mb-0 card-date">Date: {{ talk.date | filter}} - Location:
                                                 {{talk.location}}</p>
                                             <p class="subheading mb-0">Host: {{ talk.host}}</p>
                                             <br>
                                             <div class="card__description--wrapper">
-                                                <p class="card__description"> {{ talk.description }}</p>
+                                                <p class="card__description card-description"> {{ talk.description }}</p>
                                             </div>
                                         </v-card-text>
                                     </v-card>
@@ -120,7 +120,7 @@
     }
 
     .card__description--wrapper {
-        height: 60px;
+        height: 70px;
         overflow: hidden;
         text-overflow: ellipsis;
     }

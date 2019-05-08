@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container class="container-main">
         <v-layout align-center justify-center row fill-height v-if="loading">
             <v-flex xs2>
                 <v-progress-circular
@@ -11,7 +11,7 @@
                 ></v-progress-circular>
             </v-flex>
         </v-layout>
-        <v-layout mb10 v-else>
+        <v-layout  v-else>
             <v-flex xs12 sm10 offset-sm1>
                 <v-card max-height class="talkpage-card">
                     <v-img
@@ -26,16 +26,16 @@
                             </div>
                         </template>
                     </v-img>
-                    <v-card-title primary-title>
-                        <div>
-                            <h3 class="headline mb-1">{{ talkPage.title}}</h3>
-                            <p class="talkpage--subheading mb-0">Date: {{ talkPage.date | filter}} - Location:
-                                {{talkPage.location}}</p>
-                            <p class="talkpage--subheading mb-0">Host: {{ talkPage.host}}</p>
-                            <br>
-                            <p class="talkpage--description"> {{ talkPage.description }}</p>
-                        </div>
+                    <v-card-title primary-title pb-0>
+                        <h3 class="headline mb-1 card-title">{{ talkPage.title}}</h3>
                     </v-card-title>
+                    <v-card-text primary-title>
+                        <p class="subheading mb-0 card-date">Date: {{ talkPage.date | filter}} - Location:
+                            {{talkPage.location}}</p>
+                        <p class="subheading mb-0 card-host">Host: {{ talkPage.host}}</p>
+                        <br>
+                        <p class="card-description"> {{ talkPage.description }}</p>
+                    </v-card-text>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -61,7 +61,5 @@
 </script>
 
 <style lang="scss">
-    .talkpage-card {
-        margin-top: 30px;
-    }
+
 </style>

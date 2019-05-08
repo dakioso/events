@@ -103,7 +103,7 @@ z
         text-decoration: none;
 
         span {
-            font-size: $font-size;
+            font-size: $font-size-small;
         }
 
         .name {

@@ -2,7 +2,30 @@ $breakpoint-small: 750px;
 $breakpoint-medium: 960px;
 
 $primary-color: #333;
-$font-size: 20px;
+$font-size-big: 40px;
+$font-size-medium: 25px;
+$font-size-small: 20px;
+$font-size-xs: 15px;
+$font-size-small-xs: 17px;
 
 
+//Global styles for all
+.v-card__title {
+  padding: 16px 16px 0;
+}
 
+.card-date {
+  font-size: $font-size-small-xs !important;;
+}
+
+.card-host {
+  font-size: $font-size-small-xs !important;;
+}
+
+.card-description {
+  font-size: $font-size-xs !important;;
+}
+
+.card-title {
+  font-size: $font-size-medium !important;
+}
