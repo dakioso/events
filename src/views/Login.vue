@@ -1,5 +1,5 @@
 <template>
-<LoginPage></LoginPage>
+    <LoginPage></LoginPage>
 </template>
 
 <script>

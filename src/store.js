@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-//import createPersistedState from 'vuex-persistedstate';
 import * as firebase from 'firebase'
-
 
 Vue.use(Vuex);
 
@@ -14,6 +12,7 @@ export default new Vuex.Store({
         error: null
     },
 
+    //These are the functions that mutate the state, they come from the commit in the actions
     mutations: {
         createNewTalk(state, payload) {
             state.loadedTalks.push(payload)
@@ -22,24 +21,24 @@ export default new Vuex.Store({
             let updateTalk = state.loadedTalks.find(updateTalk => {
                 return updateTalk.id === payload.id
             })
-            if(payload.title ) {
+            if (payload.title) {
                 updateTalk.title = payload.title
             }
-            if(payload.description) {
+            if (payload.description) {
                 updateTalk.description = payload.description
             }
-            if(payload.date) {
+            if (payload.date) {
                 updateTalk.date = payload.date
             }
-            if(payload.host) {
+            if (payload.host) {
                 updateTalk.host = payload.host
             }
-            if(payload.location) {
+            if (payload.location) {
                 updateTalk.location = payload.location
             }
         },
         deleteTalkData(state, payload) {
-          state.loadedTalks.push(payload)
+            state.loadedTalks.push(payload)
         },
         setUser(state, payload) {
             state.user = payload
@@ -57,6 +56,8 @@ export default new Vuex.Store({
             state.loadedTalks = payload
         }
     },
+    //These are the functions that do all the fetches, updates and deletion to the db.
+    //They also do all the functions related to the state
     actions: {
         loadTalks({commit}) {
             commit('setLoading', true)
@@ -74,7 +75,6 @@ export default new Vuex.Store({
                             date: obj[key].date,
                             imageUrl: obj[key].imageUrl,
                             createdBy: obj[key].createdBy
-
                         })
                     }
                     commit('setLoadedTalks', talks)
@@ -86,7 +86,7 @@ export default new Vuex.Store({
                 })
         },
         createNewTalk({commit, getters}, payload) {
-            // image is passed as file, need to upload it and then store the imageUrl
+            //Image is passed as file, need to upload it and then store the imageUrl
             const dbRef = firebase.database().ref("talks").push();
             const key = dbRef.key;
             const filename = payload.image.name;
@@ -95,7 +95,7 @@ export default new Vuex.Store({
 
             storageRef.put(payload.image)
                 .then(() => {
-                    // file uploaded
+                    //File uploaded
                     return storageRef.getDownloadURL();
                 })
                 .then((downloadUrl) => {
@@ -122,19 +122,19 @@ export default new Vuex.Store({
         updateTalkData({commit}, payload) {
             commit('setLoading', true)
             const updateObj = {}
-            if(payload.title) {
+            if (payload.title) {
                 updateObj.title = payload.title
             }
-            if(payload.description) {
+            if (payload.description) {
                 updateObj.description = payload.description
             }
-            if(payload.date) {
+            if (payload.date) {
                 updateObj.date = payload.date
             }
-            if(payload.host) {
+            if (payload.host) {
                 updateObj.host = payload.host
             }
-            if(payload.location) {
+            if (payload.location) {
                 updateObj.location = payload.location
             }
             firebase.database().ref('talks').child(payload.id).update(updateObj)
@@ -156,47 +156,6 @@ export default new Vuex.Store({
                     console.log('error:' + error)
                 })
         },
-        /*createNewTalk({commit, getters}, payload) {
-            const talkPayload = {
-                title: payload.title,
-                description: payload.description,
-                host: payload.host,
-                date: payload.date.toISOString(),
-                location: payload.location,
-                createdBy: getters.user.id
-            }
-            let imageUrl
-            let key
-            firebase.database().ref('talks').push(talkPayload)
-                .then((data) => {
-                    const key = data.key
-                    return key
-                })
-                .then(key => {
-                    const filename = payload.image.name
-                    const ext = filename.slice(filename.lastIndexOf('.'))
-                    return firebase.storage().ref('talks/' + key + '.' + ext).put(payload.image)
-                })
-                .then(fileData => {
-                    return fileData.ref.getDownloadURL()
-                        .then(imageUrl => {
-                            return firebase.database().ref('talks').child(key).update({ imageUrl: imageUrl })
-                        })
-                    /!*imageUrl = fileData.metadata.downloadURLs
-                    return firebase.database().ref('talks').child(key).update({imageUrl: imageUrl})*!/
-                })
-                .then(() => {
-                    commit('createNewTalk', {
-                        ...talkPayload,
-                        imageUrl: imageUrl,
-                        id: key
-                    })
-                })
-                .catch((error) => {
-                    console.error(error)
-                })
-
-        },*/
         signupNewUser({commit}, payload) {
             commit('setLoading', true)
             commit('clearError')
@@ -237,6 +196,7 @@ export default new Vuex.Store({
                     }
                 )
         },
+        //Lets the user be signed in and not auto signout on page reload
         autoSignIn({commit}, payload) {
             commit('setUser', {id: payload.uid})
         },
@@ -248,12 +208,15 @@ export default new Vuex.Store({
             commit('clearError')
         }
     },
+    //Getters distribute the state to where it needs to be
     getters: {
+        //Loads all the talks
         loadedTalks(state) {
             return state.loadedTalks.sort((talkA, talkB) => {
                 return talkA.date > talkB.date
             })
         },
+        //Load one specific talk
         loadedTalk(state) {
             return (talkId) => {
                 return state.loadedTalks.find((talk) => {
@@ -261,6 +224,7 @@ export default new Vuex.Store({
                 })
             }
         },
+        //Loads only the three first, therefore called featured
         featuredTalks(state, getters) {
             return getters.loadedTalks.slice(0, 3);
         },

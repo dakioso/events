@@ -106,10 +106,12 @@
     .container-main {
         padding: 20px 0;
     }
+
     .edittalks__title {
         padding: 0 0 0 15px;
         font-size: 22px;
     }
+
     .edittalks__btns {
         justify-content: center;
     }

@@ -42,12 +42,14 @@
                                             <h3 class="headline mb-1 card-title">{{ talk.title}}</h3>
                                         </v-card-title>
                                         <v-card-text>
-                                            <p class="subheading mb-0 card-date">Date: {{ talk.date | filter}} - Location:
+                                            <p class="subheading mb-0 card-date">Date: {{ talk.date | filter}} -
+                                                Location:
                                                 {{talk.location}}</p>
                                             <p class="subheading mb-0">Host: {{ talk.host}}</p>
                                             <br>
                                             <div class="card__description--wrapper">
-                                                <p class="card__description card-description"> {{ talk.description }}</p>
+                                                <p class="card__description card-description"> {{ talk.description
+                                                    }}</p>
                                             </div>
                                         </v-card-text>
                                     </v-card>

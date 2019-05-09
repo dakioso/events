@@ -4,7 +4,6 @@ import Home from './views/Home.vue'
 import TalkPage from './components/talks/TalkPage'
 import AuthGuard from './auth-guard'
 
-
 Vue.use(Router)
 
 export default new Router({

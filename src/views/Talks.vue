@@ -1,14 +1,14 @@
 <template>
-  <TalksAll/>
+    <TalksAll/>
 </template>
 
 
 <script>
-  import TalksAll from '../components/talks/TalksAll'
+    import TalksAll from '../components/talks/TalksAll'
 
-  export default {
-    components: {
-      TalksAll
+    export default {
+        components: {
+            TalksAll
+        }
     }
-  }
 </script>
