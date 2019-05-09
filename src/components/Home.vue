@@ -11,7 +11,7 @@
                 </v-layout>
             </v-parallax>
         </v-layout>
-        <v-container fluid mr-5>
+        <v-container fluid>
             <v-layout>
                 <v-flex xs12 class="text-xs-center">
                     <v-progress-circular

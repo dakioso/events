@@ -1,5 +1,5 @@
 <template>
-    <v-container class="container-main">
+    <v-container fluid>
         <v-layout align-center justify-center row fill-height v-if="loading">
             <v-flex xs2>
                 <v-progress-circular
@@ -59,7 +59,3 @@
         }
     }
 </script>
-
-<style lang="scss">
-
-</style>
