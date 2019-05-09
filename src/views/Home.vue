@@ -1,14 +1,14 @@
 <template>
-  <Frontpage/>
+    <Frontpage/>
 </template>
 
 
 <script>
-  import Frontpage from '../components/Frontpage'
+    import Frontpage from '../components/Home'
 
-  export default {
-    components: {
-      Frontpage
+    export default {
+        components: {
+            Frontpage
+        }
     }
-  }
 </script>
