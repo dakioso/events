@@ -11,7 +11,7 @@
                 ></v-progress-circular>
             </v-flex>
         </v-layout>
-        <v-layout row wrap v-else>
+        <v-layout row wrap v-else class="pt-3">
             <v-flex xs12 sm10 offset-sm1>
                 <v-card max-height class="talkpage-card">
                     <v-img

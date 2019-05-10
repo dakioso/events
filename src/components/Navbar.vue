@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <v-toolbar dark>
+        <v-toolbar app dark>
             <v-toolbar-title>
                 <router-link :to="{ name: 'home'}" class="logo" area-label="hem">
                     <span class="name">Espresso</span>
