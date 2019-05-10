@@ -6,8 +6,8 @@
                         dark
                         src="https://i.imgur.com/pON29gC.jpg">
                 <v-layout align-center column justify-center>
-                    <h1 class="display-3 font-weight-light mb-2">Espresso talks</h1>
-                    <h4 class="subheading">Här finns alla kommande <i>Espresso Talks</i></h4>
+                    <h1 class="display-2 font-weight-light mb-2">Espresso talks</h1>
+                    <h4 class="subheading homepage-subtitle">Här finns alla kommande <i>Espresso Talks</i></h4>
                 </v-layout>
             </v-parallax>
         </v-layout>
@@ -84,6 +84,7 @@
         min-height: 100vh;
         background: transparent;
         width: 100%;
+        transform: translateY(-20px);
     }
 
     .homepage-wrapper {
