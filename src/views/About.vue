@@ -24,7 +24,7 @@
     }
     .about-upper--wrapper {
         background-color: #696a6b;
-        background-image: -webkit-linear-gradient(30deg, #676767 50%, #505050 50%);
+        background-image: -webkit-linear-gradient(30deg, #464749 50%, #505050 50%);
         display: flex;
         flex-direction: column;
         text-align: center;
