@@ -1,7 +1,7 @@
 <template>
     <v-container class="container-main">
-        <ul class="event__list">
-            <li v-for="(talk, index) in allTalks" :key="index" class="event-item">
+        <ul class="cards__list">
+            <li v-for="(talk, index) in allTalks" :key="index" class="cards-item">
                 <v-flex>
                     <router-link :to="{ name: 'talkpage', params: { id:talk.id }}">
                         <v-card hover>
@@ -33,21 +33,7 @@
                 </v-flex>
             </li>
         </ul>
-        <router-link tag="span" :to="{ name: 'createnewtalk' }">
-            <v-btn fab
-                   dark
-                   color="blue"
-                   bottom
-                   outline
-                   right
-                   fixed
-                   class="newtalk__button"
-                    v-if="isUserAuth">
-                <i class="material-icons">
-                    create
-                </i>
-            </v-btn>
-        </router-link>
+
     </v-container>
 </template>
 
@@ -80,17 +66,19 @@
         }
     }
 
-    .event__list {
+    .cards__list {
         list-style: none;
-        padding: 0;
+        padding: 0 0 20px 0;
         display: grid;
         grid-template-columns: 1fr;
         grid-gap: 20px;
         justify-items: stretch;
         align-items: stretch;
+
         a {
             text-decoration: none;
         }
+
         @media (min-width: $breakpoint-small) {
             grid-template-columns: 2fr 2fr;
         }
@@ -100,29 +88,12 @@
 
         }
     }
+
     .card__description--wrapper {
         height: 70px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
-    .newtalk__button {
-        float: right;
-    }
 
-    #lateral .v-speed-dial,
-    #lateral .v-btn--floating {
-        position: absolute;
-    }
-
-    #lateral .v-btn--floating {
-        margin: 0 0 16px 16px;
-    }
-
-    .v-btn--bottom.v-btn--fixed {
-        bottom: 25px;
-        @media (min-width: $breakpoint-small) {
-            bottom: 120px;
-        }
-    }
 </style>

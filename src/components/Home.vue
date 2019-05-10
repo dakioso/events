@@ -99,7 +99,7 @@
             grid-row-gap: 20px;
             justify-items: stretch;
             align-items: stretch;
-            padding: 0;
+            padding: 0 0 20px 0;
             @media (min-width: $breakpoint-small) {
                 grid-template-columns: 1fr 1fr 1fr;
             }

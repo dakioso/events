@@ -1,6 +1,6 @@
 <template>
-    <v-container class="container-main">
-        <v-layout row>
+    <v-container fluid>
+        <v-layout row class="pt-3">
             <v-flex xs12>
                 <form v-on:submit.prevent="onCreateNewTalk">
                     <v-layout row>
@@ -65,7 +65,11 @@
                     </v-layout>
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3 mt-1 mb-1>
-                            <img :src="imageUrl" class="preview__img" alt="create talk preview image">
+                            <v-img :src="imageUrl"
+                                   class="preview__img"
+                                   alt="create talk preview image"
+                                   v-if="imageUrl">
+                            </v-img>
                         </v-flex>
                     </v-layout>
                     <v-layout>
@@ -82,11 +86,11 @@
                     <v-btn fab
                            dark
                            color="blue"
-                           bottom
                            outline
+                           absolute
                            right
-                           fixed
-                           class="newtalk__button"
+                           bottom
+                           class="new-user-button"
                            v-if="isUserAuth">
                         <i class="material-icons">
                             person_add
@@ -170,7 +174,10 @@
 
 <style lang="scss">
     .preview__img {
-        height: 150px;
+        height: 250px;
+    }
+    .v-btn--bottom.v-btn--absolute {
+        bottom: 15px;
     }
 
 </style>

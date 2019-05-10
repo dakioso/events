@@ -99,6 +99,13 @@ z
 <style lang="scss" scoped>
     @import "../styles/global.scss";
 
+    nav {
+        z-index: 100;
+    }
+    aside {
+        z-index: 100;
+    }
+
     .logo {
         text-decoration: none;
 
