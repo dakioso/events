@@ -1,5 +1,5 @@
 <template>
-    <v-container pt5>
+    <v-container class="mt-5">
         <v-layout row v-if="error">
             <v-flex xs12 sm6 offset-sm3>
                 <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
@@ -108,8 +108,3 @@
 
     }
 </script>
-
-<style lang="scss">
-
-
-</style>

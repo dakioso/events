@@ -18,7 +18,7 @@
 
 <style lang="scss">
     .about-main {
-        display: flex;;
+        display: flex;
         flex-direction: column;
         height: 100%;
     }

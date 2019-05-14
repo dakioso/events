@@ -4,7 +4,7 @@
             <v-icon>edit</v-icon>
         </v-btn>
         <v-card>
-            <v-container class="container-main">
+            <v-container >
                 <v-layout row wrap>
                     <v-flex xs12>
                         <v-card-title primary-title class="edittalks__title">Edit Talk</v-card-title>
@@ -42,7 +42,6 @@
                         </v-card-text>
                     </v-flex>
                 </v-layout>
-                <v-divider></v-divider>
                 <v-layout row wrap mt-3>
                     <v-flex xs12>
                         <v-card-actions class="edittalks__btns">

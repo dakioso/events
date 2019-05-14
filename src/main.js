@@ -7,12 +7,14 @@ import Filters from './filters/date'
 import * as firebase from 'firebase'
 import AlertCmp from './components/shared/Alert'
 import EditTalks from './components/shared/EditTalks'
+import EditDate from './components/shared/EditDate'
 
 Vue.config.productionTip = false
 
 Vue.filter('filter', Filters)
 Vue.component('app-alert', AlertCmp)
 Vue.component('app-edit-talks', EditTalks)
+Vue.component('app-edit-date', EditDate)
 
 
 new Vue({

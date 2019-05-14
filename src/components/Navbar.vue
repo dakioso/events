@@ -102,6 +102,7 @@ z
     nav {
         z-index: 100;
     }
+
     aside {
         z-index: 100;
     }

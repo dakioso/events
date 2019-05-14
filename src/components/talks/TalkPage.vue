@@ -22,7 +22,10 @@
                         <template v-if="userIsAuth">
                             <div class="text-xs-right">
                                 <v-spacer></v-spacer>
+                                <div class="edit-btns">
                                 <app-edit-talks :talkPage="talkPage"></app-edit-talks>
+                               <app-edit-date :talkPage="talkPage" v-if="userIsAuth"></app-edit-date>
+                                </div>
                             </div>
                         </template>
                     </v-img>
@@ -59,3 +62,12 @@
         }
     }
 </script>
+
+<style>
+    .edit-btns {
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+
+    }
+</style>
