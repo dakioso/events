@@ -29,25 +29,26 @@
                         <h2>Upcoming talks!</h2>
                     </div>
                     <ul>
-                        <li v-for="(talk, index) in featuredTalks" :key="index" class="event-item">
-                            <v-flex>
-                                <router-link :to="{ name: 'talkpage', params: { id:talk.id }}">
-                                    <v-card hover>
+                        <li v-for="(talk, index) in featuredTalks" :key="index" class="event-item" aria-label="article">
+                            <v-flex aria-hidden="true">
+                                <router-link :to="{ name: 'talkpage', params: { id:talk.id }}" aria-hidden="true">
+                                    <v-card hover aria-hidden="true">
                                         <v-img :src="talk.imageUrl"
                                                aspect-ratio="2.75"
                                                alt="talk image"
+                                               aria-hidden="true"
                                         ></v-img>
 
-                                        <v-card-title primary-title pb-0>
+                                        <v-card-title aria-hidden="true" primary-title pb-0>
                                             <h3 class="headline mb-1 card-title">{{ talk.title}}</h3>
                                         </v-card-title>
-                                        <v-card-text>
-                                            <p class="subheading mb-0 card-date">Date: {{ talk.date | filter}}</p>
-                                              <p class="subheading mb-0 card-date">  Location:
+                                        <v-card-text aria-hidden="true">
+                                            <p class="subheading mb-0 card-date" aria-hidden="true">Date: {{ talk.date | filter}}</p>
+                                              <p class="subheading mb-0 card-date" aria-hidden="true">  Location:
                                                 {{talk.location}}</p>
                                             <br>
-                                            <div class="card__description--wrapper">
-                                                <p class="card__description card-description"> {{ talk.description
+                                            <div class="card__description--wrapper" aria-hidden="true">
+                                                <p class="card__description card-description" aria-hidden="true"> {{ talk.description
                                                     }}</p>
                                             </div>
                                         </v-card-text>

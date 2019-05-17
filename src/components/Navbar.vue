@@ -12,7 +12,8 @@
                 <v-btn flat v-for="item in menuItems"
                        :key="item.title"
                        router
-                       :to="item.link">
+                       :to="item.link"
+                        aria-label="menu link">
                     <v-icon left>{{ item.icon}}</v-icon>
                     {{ item.title}}
                 </v-btn>
@@ -32,14 +33,16 @@
                 fixed
                 right
                 dark
-                v-model="drawer">
+                v-model="drawer"
+                aria-hidden="true">
             <v-list class="draw-list">
                 <v-list-tile
                         v-for="item in menuItems"
                         :key="item.title"
                         router
                         :to="item.link"
-                        active-class="orange--text">
+                        active-class="orange--text"
+                        >
                     <v-list-tile-action>
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-tile-action>

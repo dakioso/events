@@ -16,6 +16,7 @@
                     flat
                     round
                     :to="item.link"
+                    aria-label="footer menu link"
             >
                 {{ item.title }}
             </v-btn>
