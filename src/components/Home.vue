@@ -43,8 +43,8 @@
                                             <h3 class="headline mb-1 card-title">{{ talk.title}}</h3>
                                         </v-card-title>
                                         <v-card-text aria-hidden="true">
-                                            <p class="subheading mb-0 card-date" aria-hidden="true">Date: {{ talk.date | filter}}</p>
-                                              <p class="subheading mb-0 card-date" aria-hidden="true">  Location:
+                                            <p class="subheading mb-0 card-date" aria-hidden="true"><b>Date</b>: {{ talk.date | filter}}</p>
+                                              <p class="subheading mb-0 card-date" aria-hidden="true"><b>Location</b>:
                                                 {{talk.location}}</p>
                                             <br>
                                             <div class="card__description--wrapper" aria-hidden="true">

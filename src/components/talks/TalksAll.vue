@@ -15,9 +15,9 @@
                                 <h1 class="headline mb-1 card-title">{{ talk.title}}</h1>
                             </v-card-title>
                             <v-card-text aria-hidden="true">
-                                <p class="subheading mb-0 card-date" aria-hidden="true">Date: {{ talk.date | filter}} Location:
+                                <p class="subheading mb-0 card-date" aria-hidden="true"><b>Date</b>: {{ talk.date | filter}} - <b>Location</b>:
                                     {{talk.location}}</p>
-                                <p class="subheading mb-0 card-host" aria-hidden="true">Host: {{ talk.host}}</p>
+                                <p class="subheading mb-0 card-host" aria-hidden="true"><b>Host</b>: {{ talk.host}}</p>
                                 <br>
                                 <div class="card__description--wrapper" aria-hidden="true">
                                     <p class="card__description card-description" aria-hidden="true"> {{ talk.description }}</p>
